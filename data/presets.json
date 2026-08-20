@@ -1,0 +1,45 @@
+{
+  "datasets": [
+    {
+      "id": "khans",
+      "title": "Kazakh khans by Year",
+      "url": "../data/kazakh_khans.tsv",
+      "format": "tsv",
+      "columns": {
+        "name": "Name",
+        "period": "Ruling period",
+        "nativeName": "Name in Kazakh",
+        "deathReason": "Note"
+      },
+      "sources": "Source: en.wikipedia.org/wiki/List_of_Kazakh_khans<br />& ru.wikipedia.org/wiki/Казахский_хан",
+      "author": "Author: Witold @ Witold1.github.io"
+    },
+    {
+      "id": "caliphs",
+      "title": "Caliphs by Year",
+      "url": "../data/all_caliphs_timeline.tsv",
+      "format": "tsv",
+      "columns": {
+        "name": "Name",
+        "period": "Reign",
+        "group": "Dynasty",
+        "deathReason": "Cause of death"
+      },
+      "sources": "Source: AI assistant helped compile and verify the data<br />& en.wikipedia.org/wiki/List_of_caliphs",
+      "author": "Author: Witold @ Witold1.github.io"
+    },
+    {
+      "id": "english-monarchs",
+      "title": "English monarchs by Year",
+      "url": "../data/english_monarchs.csv",
+      "format": "csv",
+      "columns": {
+        "name": "Name",
+        "period": "Ruling Period",
+        "group": "Dynasty"
+      },
+      "sources": "Source: AI assistant helped compile and verify the data<br />& en.wikipedia.org/wiki/List_of_English_monarchs",
+      "author": "Author: Witold @ Witold1.github.io"
+    }
+  ]
+}

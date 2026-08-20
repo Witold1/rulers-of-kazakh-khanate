@@ -1,0 +1,28 @@
+:root,
+:root[data-theme="light"] {
+  --face: #ffffff;
+  --tick: #000000;
+  --grid: #000000;
+  --title: #000000;
+  --legend-header: #000000;
+  --caption: #9a9a9a;
+  --muted: #666666;
+  --chip: #f2f2f2;
+  --chip-on: #e8e8e8;
+  --stroke: #d0d0d0;
+  --error: #b33;
+}
+
+:root[data-theme="dark"] {
+  --face: #666666;
+  --tick: #ffffff;
+  --grid: #ffffff;
+  --title: #ffffff;
+  --legend-header: #ffffff;
+  --caption: #ffffff;
+  --muted: #e6e6e6;
+  --chip: #5a5a5a;
+  --chip-on: #4a4a4a;
+  --stroke: #888888;
+  --error: #ffc9c9;
+}

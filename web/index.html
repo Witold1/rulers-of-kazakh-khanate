@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kazakh khans by Year</title>
+    <link rel="stylesheet" href="./css/tokens.css" />
+    <link rel="stylesheet" href="./css/layout.css" />
+    <link rel="stylesheet" href="./css/export.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="top">
+        <div class="controls">
+          <button type="button" class="chip" id="theme-toggle" aria-pressed="true">
+            Light
+          </button>
+          <button type="button" class="chip" id="upload-open" aria-expanded="false">
+            Upload your data
+          </button>
+          <section id="custom-panel" hidden>
+            <div class="custom-sections">
+              <section class="custom-section">
+                <h3>Presets</h3>
+                <div id="preset-controls"></div>
+              </section>
+              <section class="custom-section">
+                <h3>Dataset setup</h3>
+                <div class="custom-file-row">
+                  <label class="custom-file-field">
+                    Data file
+                    <div class="upload-row">
+                      <label for="custom-tsv" class="chip">Choose file</label>
+                      <span id="custom-file-name">No file selected</span>
+                    </div>
+                    <input id="custom-tsv" type="file" accept=".tsv,.csv,text/tab-separated-values,text/csv" hidden />
+                  </label>
+                  <label class="custom-format-field">
+                    <span>File format</span>
+                    <select id="custom-format">
+                      <option value="tsv" selected>TSV</option>
+                      <option value="csv">CSV</option>
+                    </select>
+                  </label>
+                </div>
+                <div class="custom-grid">
+                  <label>
+                    <span>Ruler name column <span class="required" aria-hidden="true">*</span></span>
+                    <select id="col-name" required></select>
+                  </label>
+                  <label>
+                    <span>Reign period column <span class="required" aria-hidden="true">*</span></span>
+                    <select id="col-period" required></select>
+                  </label>
+                  <label>
+                    <span class="field-label">
+                      Custom group column
+                      <button
+                        type="button"
+                        class="stat-tip"
+                        aria-expanded="false"
+                        aria-label="Explain custom group column"
+                      >
+                        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false">
+                          <circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.5" />
+                          <circle cx="8" cy="5" r="1" fill="currentColor" />
+                          <path d="M8 7.25v4.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                        </svg>
+                      </button>
+                      <span class="stat-tip-bubble" role="tooltip" hidden>
+                        Optional column shown in year tooltips and the legend. For example: dynasty,
+                        tribe, faction, major instability, contested reign.
+                      </span>
+                    </span>
+                    <select id="col-group"></select>
+                  </label>
+                  <label>
+                    <span>Ruler native-name column</span>
+                    <select id="col-native"></select>
+                  </label>
+                  <label>
+                    <span>Tooltip note column</span>
+                    <select id="col-death"></select>
+                  </label>
+                </div>
+              </section>
+              <section class="custom-section">
+                <h3>Chart metadata</h3>
+                <div class="custom-grid">
+                  <label>Title <input id="custom-title" type="text" placeholder="Custom dataset title" /></label>
+                  <label>Sources <input id="custom-sources" type="text" placeholder="Source: ..." /></label>
+                  <label>Author <input id="custom-author" type="text" placeholder="Author: ..." /></label>
+                </div>
+              </section>
+              <section class="custom-section">
+                <h3>Color scheme</h3>
+                <label class="custom-palette-field">
+                  <span>Palette preset</span>
+                  <select id="custom-palette"></select>
+                </label>
+                <div id="palette-preview" class="palette-preview" aria-hidden="true"></div>
+              </section>
+              <p id="custom-error" hidden></p>
+              <button type="button" class="chip" id="apply-custom">Apply custom dataset</button>
+            </div>
+          </section>
+        </div>
+        <h1 id="chart-title">Kazakh khans by Year</h1>
+      </header>
+
+      <p id="error" hidden></p>
+
+      <div class="chart-scroll">
+        <svg id="chart" role="img" aria-label="Century by year tile chart of Kazakh khans"></svg>
+      </div>
+      <p id="readout" aria-live="polite"></p>
+      <div id="legend"></div>
+
+      <footer class="caption">
+        <div class="sources" id="sources">
+          Source:
+          <a href="https://en.wikipedia.org/wiki/List_of_Kazakh_khans">en.wikipedia.org/wiki/List_of_Kazakh_khans</a><br />
+          &amp; <a href="https://ru.wikipedia.org/wiki/%D0%9A%D0%B0%D0%B7%D0%B0%D1%85%D1%81%D0%BA%D0%B8%D0%B9_%D1%85%D0%B0%D0%BD">ru.wikipedia.org/wiki/Казахский_хан</a>
+        </div>
+        <div id="author-line">
+          Author: Witold @
+          <a href="https://witold1.github.io">Witold1.github.io</a>
+        </div>
+      </footer>
+    </div>
+    <div id="tooltip" hidden></div>
+    <script type="module" src="./js/app.js"></script>
+  </body>
+</html>

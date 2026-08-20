@@ -1,0 +1,238 @@
+.export-tools {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.35em;
+  margin: 0;
+  padding: 0;
+  font: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+}
+
+.export-tools .export-icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  color: inherit;
+  opacity: 0.7;
+}
+
+.export-tools .export-icon svg {
+  display: block;
+  width: 0.85em;
+  height: 0.85em;
+}
+
+.export-tools button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid transparent;
+  border-radius: 0;
+  background: none;
+  font: inherit;
+  font-weight: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.export-tools:hover .export-icon,
+.export-tools button:hover,
+.export-tools button:focus-visible {
+  opacity: 1;
+  outline: none;
+}
+
+.export-tools button:hover,
+.export-tools button:focus-visible {
+  border-bottom-color: currentColor;
+}
+
+.export-tools button:disabled {
+  opacity: 0.45;
+  cursor: wait;
+  border-bottom-color: transparent;
+}
+
+.export-tools .export-prefix {
+  font: inherit;
+  font-weight: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+  margin-right: 0.15em;
+}
+
+.export-sep {
+  color: inherit;
+  opacity: 0.45;
+  user-select: none;
+  font-weight: inherit;
+}
+
+.footer-export {
+  margin: 0.65rem 0 0;
+}
+
+/* Hide chrome while capturing */
+body.is-exporting .controls,
+body.is-exporting .export-tools,
+body.is-exporting .footer-export,
+body.is-exporting #readout,
+body.is-exporting #error,
+body.is-exporting #tooltip,
+body.is-exporting #custom-panel {
+  display: none !important;
+}
+
+/* Absolute px type — rem still shrinks on iPhone during foreignObject capture */
+html:has(body.is-exporting),
+body.is-exporting,
+.page.is-export-capture {
+  font-size: 18px !important;
+  -webkit-text-size-adjust: 100% !important;
+  text-size-adjust: 100% !important;
+  background: var(--face) !important;
+}
+
+body.is-exporting {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+body.is-exporting .page,
+.page.is-export-capture {
+  width: 1180px;
+  max-width: 1180px;
+  padding: 24px 24px 40px;
+  background: var(--face);
+}
+
+body.is-exporting .page {
+  overflow: visible;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+body.is-exporting .top,
+.page.is-export-capture .top {
+  justify-content: flex-end;
+  margin-bottom: 12px;
+}
+
+body.is-exporting h1,
+.page.is-export-capture h1 {
+  font-size: 39.2px !important;
+}
+
+body.is-exporting .caption,
+.page.is-export-capture .caption {
+  font-size: 15.2px !important;
+  margin-top: 28px;
+}
+
+body.is-exporting #legend,
+.page.is-export-capture #legend {
+  display: grid !important;
+  grid-template-columns: repeat(var(--legend-cols, 1), minmax(0, 1fr)) !important;
+  gap: 0.35rem 0.75rem;
+  max-height: none !important;
+  overflow: visible !important;
+  border: 0 !important;
+  padding-left: 18px;
+}
+
+body.is-exporting .legend-col,
+.page.is-export-capture .legend-col {
+  min-width: 0 !important;
+  align-self: start !important;
+}
+
+body.is-exporting .legend-col ul,
+.page.is-export-capture .legend-col ul {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+body.is-exporting .legend-col li,
+.page.is-export-capture .legend-col li {
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 1.15 !important;
+}
+
+body.is-exporting .legend-col h3,
+.page.is-export-capture .legend-col h3 {
+  margin: 0 0 0.2rem !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  line-height: 1.15 !important;
+  position: static !important;
+}
+
+body.is-exporting .legend-item,
+.page.is-export-capture .legend-item {
+  appearance: none !important;
+  display: block !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  min-height: 0 !important;
+  height: auto !important;
+  background: transparent !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  line-height: 1.15 !important;
+  letter-spacing: 0 !important;
+  text-decoration: none !important;
+  overflow-wrap: break-word !important;
+  word-break: normal !important;
+  opacity: 1 !important;
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+}
+
+body.is-exporting .legend-label,
+.page.is-export-capture .legend-label {
+  display: inline !important;
+  line-height: 1.15 !important;
+}
+
+body.is-exporting .legend-mark,
+.page.is-export-capture .legend-mark {
+  display: inline !important;
+  font-size: 0.72em !important;
+  line-height: 1 !important;
+  vertical-align: baseline !important;
+}
+
+body.is-exporting .chart-scroll,
+.page.is-export-capture .chart-scroll {
+  overflow: visible !important;
+}
+
+body.is-exporting #chart,
+.page.is-export-capture #chart {
+  min-width: 0 !important;
+  width: 100% !important;
+}
+
+body.is-exporting #chart.is-filtered .ruler-tiles,
+.page.is-export-capture #chart.is-filtered .ruler-tiles {
+  opacity: 1 !important;
+}
+
+.page.is-export-capture {
+  margin: 0 !important;
+  width: 1180px;
+  max-width: 1180px;
+  overflow: visible;
+  transform: none !important;
+  position: relative;
+  left: 0;
+  top: 0;
+}
