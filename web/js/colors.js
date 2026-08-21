@@ -24,7 +24,7 @@ export const PALETTE_PRESETS = {
     label: "Default",
     palettes: {
       dark: ["#dd7e73", "#FFCC00", "#FFFFCC", "#66CC33", "#F0D1E2", "#789de5", "#C0C0C0"],
-      light: ["#dd7e73", "#FFCC00", "#FFFFCC", "#66CC33", "#F0D1E2", "#789de5", "#C0C0C0"],
+      light: ["#dd7e73", "#B28E00", "#000080", "#66CC33", "#e1aac6", "#789de5", "#C0C0C0"],
     },
   },
   warm: {

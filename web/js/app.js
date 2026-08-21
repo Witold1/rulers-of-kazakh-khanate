@@ -51,6 +51,8 @@ let copiedReadoutTimer = null;
 function showCustomError(message) {
   customErrorEl.hidden = false;
   customErrorEl.textContent = message;
+  const setupToggle = customPanelEl.querySelector("#dataset-setup-toggle");
+  if (setupToggle) setSectionOpen(setupToggle, true);
 }
 
 function clearCustomError() {
@@ -79,6 +81,28 @@ function bindFieldTips(root) {
         bubble.hidden = false;
         btn.setAttribute("aria-expanded", "true");
       }
+    });
+  });
+}
+
+function setSectionOpen(btn, open) {
+  const name = btn.dataset.sectionName || "section";
+  btn.setAttribute("aria-expanded", open ? "true" : "false");
+  btn.setAttribute("aria-label", open ? `Hide ${name}` : `Show ${name}`);
+}
+
+function collapseCustomSections() {
+  customPanelEl.querySelectorAll(".section-toggle").forEach((btn) => {
+    setSectionOpen(btn, false);
+  });
+}
+
+function bindSectionToggles(root) {
+  root.querySelectorAll(".section-toggle").forEach((btn) => {
+    btn.addEventListener("click", (event) => {
+      event.stopPropagation();
+      const open = btn.getAttribute("aria-expanded") !== "true";
+      setSectionOpen(btn, open);
     });
   });
 }
@@ -439,9 +463,15 @@ presetControlsEl.addEventListener("click", (event) => {
   if (!btn) return;
   const id = btn.dataset.dataset;
   if (!id) return;
-  fillFormFromPreset(id).catch((err) => {
-    showCustomError(err.message);
-  });
+  clearCustomError();
+  showDataset(id)
+    .then(() => {
+      customPanelEl.hidden = true;
+      uploadOpenBtn.setAttribute("aria-expanded", "false");
+    })
+    .catch((err) => {
+      showCustomError(err.message);
+    });
 });
 
 uploadInput.addEventListener("change", async (event) => {
@@ -451,6 +481,8 @@ uploadInput.addEventListener("change", async (event) => {
     clearCustomError();
     const text = await file.text();
     syncCustomColumns(text, file.name, { detectFormat: true });
+    const setupToggle = customPanelEl.querySelector("#dataset-setup-toggle");
+    if (setupToggle) setSectionOpen(setupToggle, true);
   } catch (err) {
     showCustomError(err.message);
   } finally {
@@ -478,6 +510,7 @@ uploadOpenBtn.addEventListener("click", () => {
   uploadOpenBtn.setAttribute("aria-expanded", expanded ? "false" : "true");
   customPanelEl.hidden = expanded;
   if (!expanded) {
+    collapseCustomSections();
     paletteSelect.value = state.customPalettePreset;
     renderPalettePreview();
     const presetId =
@@ -579,6 +612,7 @@ try {
   state.datasetId = initialDatasetId();
   renderPresetButtons();
   bindFieldTips(customPanelEl);
+  bindSectionToggles(customPanelEl);
   initPaletteSelect();
   applyTheme();
   initExport();

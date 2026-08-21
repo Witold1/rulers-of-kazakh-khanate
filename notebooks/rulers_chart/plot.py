@@ -48,7 +48,7 @@ THEMES: dict[str, dict[str, str]] = {
 # Six colors, then they wrap. The 7th khan reuses the 1st color on purpose.
 PALETTES: dict[str, list[str]] = {
     "dark": ["#dd7e73", "#FFCC00", "#FFFFCC", "#66CC33", "#F0D1E2", "#789de5", "#C0C0C0"],
-    "light": ["#dd7e73", "#FFCC00", "#FFFFCC", "#66CC33", "#F0D1E2", "#789de5", "#C0C0C0"],
+    "light": ["#dd7e73", "#B28E00", "#000080", "#66CC33", "#e1aac6", "#789de5", "#C0C0C0"],
 }
 
 DEFAULT_CAPTION = (

@@ -21,11 +21,9 @@
           <section id="custom-panel" hidden>
             <div class="custom-sections">
               <section class="custom-section">
-                <h3>Presets</h3>
+                <h3>Select a preset or pick your data file</h3>
                 <div id="preset-controls"></div>
-              </section>
-              <section class="custom-section">
-                <h3>Dataset setup</h3>
+                <div class="custom-source-or" aria-hidden="true">or</div>
                 <div class="custom-file-row">
                   <label class="custom-file-field">
                     Data file
@@ -43,53 +41,90 @@
                     </select>
                   </label>
                 </div>
-                <div class="custom-grid">
-                  <label>
-                    <span>Ruler name column <span class="required" aria-hidden="true">*</span></span>
-                    <select id="col-name" required></select>
-                  </label>
-                  <label>
-                    <span>Reign period column <span class="required" aria-hidden="true">*</span></span>
-                    <select id="col-period" required></select>
-                  </label>
-                  <label>
-                    <span class="field-label">
-                      Custom group column
-                      <button
-                        type="button"
-                        class="stat-tip"
-                        aria-expanded="false"
-                        aria-label="Explain custom group column"
-                      >
-                        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false">
-                          <circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.5" />
-                          <circle cx="8" cy="5" r="1" fill="currentColor" />
-                          <path d="M8 7.25v4.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
-                        </svg>
-                      </button>
-                      <span class="stat-tip-bubble" role="tooltip" hidden>
-                        Optional column shown in year tooltips and the legend. For example: dynasty,
-                        tribe, faction, major instability, contested reign.
+              </section>
+              <section class="custom-section custom-section-collapsible">
+                <div class="custom-section-head">
+                  <h3 id="dataset-setup-heading">Column mapping</h3>
+                  <button
+                    type="button"
+                    class="section-toggle"
+                    id="dataset-setup-toggle"
+                    aria-expanded="false"
+                    aria-controls="dataset-setup-body"
+                    data-section-name="column mapping"
+                    aria-label="Show column mapping"
+                  >
+                    <svg class="section-chevron" viewBox="0 0 24 12" width="22" height="11" aria-hidden="true" focusable="false">
+                      <path d="M4 9.5 12 2.5l8 7" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                  </button>
+                </div>
+                <div id="dataset-setup-body" class="custom-section-body">
+                  <div class="custom-grid">
+                    <label>
+                      <span>Ruler name column <span class="required" aria-hidden="true">*</span></span>
+                      <select id="col-name" required></select>
+                    </label>
+                    <label>
+                      <span>Reign period column <span class="required" aria-hidden="true">*</span></span>
+                      <select id="col-period" required></select>
+                    </label>
+                    <label>
+                      <span class="field-label">
+                        Custom group column
+                        <button
+                          type="button"
+                          class="stat-tip"
+                          aria-expanded="false"
+                          aria-label="Explain custom group column"
+                        >
+                          <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false">
+                            <circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.5" />
+                            <circle cx="8" cy="5" r="1" fill="currentColor" />
+                            <path d="M8 7.25v4.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                          </svg>
+                        </button>
+                        <span class="stat-tip-bubble" role="tooltip" hidden>
+                          Optional column shown in year tooltips and the legend. For example: dynasty,
+                          tribe, faction, major instability, contested reign.
+                        </span>
                       </span>
-                    </span>
-                    <select id="col-group"></select>
-                  </label>
-                  <label>
-                    <span>Ruler native-name column</span>
-                    <select id="col-native"></select>
-                  </label>
-                  <label>
-                    <span>Tooltip note column</span>
-                    <select id="col-death"></select>
-                  </label>
+                      <select id="col-group"></select>
+                    </label>
+                    <label>
+                      <span>Ruler native-name column</span>
+                      <select id="col-native"></select>
+                    </label>
+                    <label>
+                      <span>Tooltip note column</span>
+                      <select id="col-death"></select>
+                    </label>
+                  </div>
                 </div>
               </section>
-              <section class="custom-section">
-                <h3>Chart metadata</h3>
-                <div class="custom-grid">
-                  <label>Title <input id="custom-title" type="text" placeholder="Custom dataset title" /></label>
-                  <label>Sources <input id="custom-sources" type="text" placeholder="Source: ..." /></label>
-                  <label>Author <input id="custom-author" type="text" placeholder="Author: ..." /></label>
+              <section class="custom-section custom-section-collapsible">
+                <div class="custom-section-head">
+                  <h3 id="chart-metadata-heading">Chart metadata</h3>
+                  <button
+                    type="button"
+                    class="section-toggle"
+                    id="chart-metadata-toggle"
+                    aria-expanded="false"
+                    aria-controls="chart-metadata-body"
+                    data-section-name="chart metadata"
+                    aria-label="Show chart metadata"
+                  >
+                    <svg class="section-chevron" viewBox="0 0 24 12" width="22" height="11" aria-hidden="true" focusable="false">
+                      <path d="M4 9.5 12 2.5l8 7" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                  </button>
+                </div>
+                <div id="chart-metadata-body" class="custom-section-body">
+                  <div class="custom-grid">
+                    <label>Title <input id="custom-title" type="text" placeholder="Custom dataset title" /></label>
+                    <label>Sources <input id="custom-sources" type="text" placeholder="Source: ..." /></label>
+                    <label>Author <input id="custom-author" type="text" placeholder="Author: ..." /></label>
+                  </div>
                 </div>
               </section>
               <section class="custom-section">
