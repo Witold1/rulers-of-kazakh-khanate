@@ -77,14 +77,31 @@
   margin: 0.65rem 0 0;
 }
 
-/* Hide chrome while capturing */
+.footer-source {
+  margin: 0.35rem 0 0;
+}
+
+.footer-source a {
+  color: inherit;
+}
+
+/* Hide chrome while capturing (clone is .page, not document.body) */
 body.is-exporting .controls,
 body.is-exporting .export-tools,
 body.is-exporting .footer-export,
+body.is-exporting .footer-source,
 body.is-exporting #readout,
 body.is-exporting #error,
 body.is-exporting #tooltip,
-body.is-exporting #custom-panel {
+body.is-exporting #custom-panel,
+.page.is-export-capture .controls,
+.page.is-export-capture .export-tools,
+.page.is-export-capture .footer-export,
+.page.is-export-capture .footer-source,
+.page.is-export-capture #readout,
+.page.is-export-capture #error,
+.page.is-export-capture #tooltip,
+.page.is-export-capture #custom-panel {
   display: none !important;
 }
 

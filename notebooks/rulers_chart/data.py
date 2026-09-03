@@ -48,8 +48,8 @@ def parse_rulers(
     """Parse a reign table into one row per reign.
 
     `name_col` and `reign_col` must match the DataFrame headers exactly.
-    Unicode prefixes on names (ᴭ ᶬ ᴶ ᴹ ᴮ) are left in the string and are
-    not turned into a `group` column yet.
+    Unicode prefixes on names (ᴭ ᶬ ᴶ ᴹ ᴮ) are left in the string.
+    Web charts now prefer a `Group symbol` column instead.
     """
     table = table.copy()
     start_end = (

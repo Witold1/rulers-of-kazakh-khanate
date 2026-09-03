@@ -2,7 +2,7 @@
 
 export const EMPTY = 0;
 
-/** Unicode prefixes on Name in the TSV: leftover category tags. */
+/** Unicode prefixes on Name: fallback if no Group symbol column is mapped. */
 export const NAME_MARKS = {
   "ᴭ": "Contested",
   "ᶬ": "Post-Tauke",
@@ -11,7 +11,7 @@ export const NAME_MARKS = {
   "ᴮ": "Bokei Horde",
 };
 
-/** Dynasty column → same style of modifier letter as the Juz tags. */
+/** Dynasty text → mark: fallback if no Group symbol column is mapped. */
 export const DYNASTY_MARKS = {
   Rashidun: "ᴿ",
   "Праведные халифы": "ᴿ",
@@ -41,17 +41,25 @@ export function markForDynasty(dynasty) {
   return DYNASTY_MARKS[dynasty] ?? "";
 }
 
-const PERIOD_SPLIT = /[–—-]/;
 const PARENS = /[()]/g;
+const RANGE_RE =
+  /^((?:(?:AD|CE)\s*)?-?\d+\s*(?:BC|BCE|AD|CE)?)\s*[–—-]\s*((?:(?:AD|CE)\s*)?-?\d+\s*(?:BC|BCE|AD|CE)?)$/i;
+const YEAR_RE = /^(?:(AD|CE)\s*)?(-?\d+)\s*(BC|BCE|AD|CE)?$/i;
 
 export function centuryFromYear(year) {
-  return Math.floor(Number(year) / 100) + 1;
+  const y = Number(year);
+  if (y <= 0) {
+    const bc = y === 0 ? 1 : Math.abs(y);
+    return -Math.ceil(bc / 100);
+  }
+  return Math.floor(y / 100) + 1;
 }
 
 export function ordinalSuffix(n) {
-  const v = n % 100;
+  const abs = Math.abs(n);
+  const v = abs % 100;
   if (v >= 11 && v <= 13) return "th";
-  switch (n % 10) {
+  switch (abs % 10) {
     case 1:
       return "st";
     case 2:
@@ -61,6 +69,47 @@ export function ordinalSuffix(n) {
     default:
       return "th";
   }
+}
+
+/** Legend heading: 15 → "15th century", -1 → "1st century BC". */
+export function centuryHeading(century) {
+  if (century < 0) {
+    const n = Math.abs(century);
+    return `${n}${ordinalSuffix(n)} century BC`;
+  }
+  return `${century}${ordinalSuffix(century)} century`;
+}
+
+/** Axis row label: 14 → "1400s", -1 → "100s BC". */
+export function rowCenturyLabel(centuryRow) {
+  if (centuryRow < 0) return `${Math.abs(centuryRow) * 100}s BC`;
+  return `${centuryRow * 100}s`;
+}
+
+/** Signed year → display: -27 → "27 BC", 14 → "14". */
+export function formatYear(year, { ad = false } = {}) {
+  const y = Number(year);
+  if (Number.isNaN(y)) return "";
+  if (y < 0) return `${Math.abs(y)} BC`;
+  if (ad && y > 0) return `${y} AD`;
+  return String(y);
+}
+
+export function formatYearRange(start, end) {
+  if (start === end) return formatYear(start);
+  return `${formatYear(start)}–${formatYear(end, { ad: start < 0 && end > 0 })}`;
+}
+
+export function parseYear(text) {
+  const t = String(text ?? "").trim();
+  if (!t) return NaN;
+  const match = t.match(YEAR_RE);
+  if (!match) return Number.parseInt(t, 10);
+  const year = Number.parseInt(match[2], 10);
+  if (Number.isNaN(year)) return NaN;
+  const era = `${match[1] || ""}${match[3] || ""}`.toUpperCase();
+  if (era === "BC" || era === "BCE") return year === 0 ? 0 : -Math.abs(year);
+  return year;
 }
 
 function splitRow(line, delimiter = "\t") {
@@ -85,17 +134,21 @@ function cell(cols, index) {
 }
 
 function parsePeriod(period) {
-  const [startText, endText] = period.split(PERIOD_SPLIT, 2);
-  const start = Number.parseInt(startText, 10);
-  let end;
-  if (endText == null || endText.trim() === "") {
-    end = start;
-  } else if (/^present$/i.test(endText.trim())) {
-    end = new Date().getFullYear();
-  } else {
-    end = Number.parseInt(endText, 10);
+  const text = String(period ?? "").trim();
+  if (!text) return { start: NaN, end: NaN };
+
+  const present = text.match(/^(.+?)\s*[–—-]\s*present$/i);
+  if (present) {
+    return { start: parseYear(present[1]), end: new Date().getFullYear() };
   }
-  return { start, end };
+
+  const range = text.match(RANGE_RE);
+  if (range) {
+    return { start: parseYear(range[1]), end: parseYear(range[2]) };
+  }
+
+  const start = parseYear(text);
+  return { start, end: start };
 }
 
 /**
@@ -131,14 +184,17 @@ export function parseRulers(source, options = {}) {
   const iPeriodByChoice = findColumnByName(header, columns.period);
   const iNativeByChoice = findColumnByName(header, columns.nativeName);
   const iGroupByChoice = findColumnByName(header, columns.group);
+  const iMarkByChoice = findColumnByName(header, columns.mark);
   const iDeathByChoice = findColumnByName(header, columns.deathReason);
 
   const iName = iNameByChoice >= 0 ? iNameByChoice : findColumn(header, /name|имя/i);
   const iPeriod =
-    iPeriodByChoice >= 0 ? iPeriodByChoice : findColumn(header, /period|правлен|годы|years/i);
+    iPeriodByChoice >= 0 ? iPeriodByChoice : findColumn(header, /period|reign|правлен|годы|years/i);
   const iNative =
     iNativeByChoice >= 0 ? iNativeByChoice : findColumn(header, /kazakh|native|arabic/i);
   const iGroup = iGroupByChoice >= 0 ? iGroupByChoice : findColumn(header, /dynast|династ|^group$/i);
+  const iMark =
+    iMarkByChoice >= 0 ? iMarkByChoice : findColumn(header, /symbol|^mark$|знач/i);
   const iDeath = iDeathByChoice >= 0 ? iDeathByChoice : findColumn(header, /death|причин|note/i);
 
   const nameIdx = iName >= 0 ? iName : 0;
@@ -155,7 +211,7 @@ export function parseRulers(source, options = {}) {
       rawName.replace(PARENS, ""),
     );
     const dynasty = cell(cols, iGroup);
-    const mark = nameMark || markForDynasty(dynasty);
+    const mark = cell(cols, iMark) || nameMark || markForDynasty(dynasty);
     rows.push({
       rawName,
       mark,
@@ -167,7 +223,7 @@ export function parseRulers(source, options = {}) {
       end,
       startCentury: centuryFromYear(start),
       endCentury: centuryFromYear(end),
-      chartLabel: `${mark}${name} ${start}-${end}`,
+      chartLabel: `${mark}${name} ${formatYearRange(start, end)}`,
     });
   }
 

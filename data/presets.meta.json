@@ -9,7 +9,8 @@
         "name": "Name",
         "period": "Ruling period",
         "nativeName": "Name in Kazakh",
-        "deathReason": "Note"
+        "group": "Group",
+        "mark": "Group symbol"
       },
       "sources": "Source: en.wikipedia.org/wiki/List_of_Kazakh_khans<br />& ru.wikipedia.org/wiki/Казахский_хан",
       "author": "Author: Witold @ Witold1.github.io"
@@ -22,7 +23,8 @@
       "columns": {
         "name": "Name",
         "period": "Reign",
-        "group": "Dynasty",
+        "group": "Dynasty or polity",
+        "mark": "Group symbol",
         "deathReason": "Cause of death"
       },
       "sources": "Source: AI assistant helped compile and verify the data<br />& en.wikipedia.org/wiki/List_of_caliphs",
@@ -36,9 +38,40 @@
       "columns": {
         "name": "Name",
         "period": "Ruling Period",
-        "group": "Dynasty"
+        "group": "Dynasty",
+        "mark": "Group symbol"
       },
       "sources": "Source: AI assistant helped compile and verify the data<br />& en.wikipedia.org/wiki/List_of_English_monarchs",
+      "author": "Author: Witold @ Witold1.github.io"
+    },
+    {
+      "id": "roman-emperors",
+      "title": "Roman emperors by Year",
+      "url": "../data/roman_emperors.tsv",
+      "format": "tsv",
+      "columns": {
+        "name": "Name",
+        "period": "Reign",
+        "group": "Dynasty",
+        "mark": "Group symbol",
+        "deathReason": "Cause of death"
+      },
+      "sources": "Source: AI assistant helped compile and verify the data<br />& en.wikipedia.org/wiki/List_of_Roman_emperors",
+      "author": "Author: Witold @ Witold1.github.io"
+    },
+    {
+      "id": "example-dataset",
+      "title": "Example dataset",
+      "url": "../data/example_dataset.tsv",
+      "format": "tsv",
+      "columns": {
+        "name": "Name",
+        "period": "Reign",
+        "group": "Dynasty",
+        "mark": "Group symbol",
+        "deathReason": "Note"
+      },
+      "sources": "Source: Synthetic (generated) dataset to show formats and test edge cases.",
       "author": "Author: Witold @ Witold1.github.io"
     }
   ]

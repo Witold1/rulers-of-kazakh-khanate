@@ -124,6 +124,7 @@ function exportFilter(node) {
     node.classList.contains("controls") ||
     node.classList.contains("export-tools") ||
     node.classList.contains("footer-export") ||
+    node.classList.contains("footer-source") ||
     node.id === "tooltip" ||
     node.id === "readout" ||
     node.id === "error" ||
@@ -408,13 +409,21 @@ export function initExport() {
 
   const footer = poster.querySelector(".caption");
   const tools = makeExportTools();
+  const sourceLine = document.createElement("p");
+  sourceLine.className = "footer-source";
+  sourceLine.append("Source code: ");
+  const sourceLink = document.createElement("a");
+  sourceLink.href = "https://github.com/Witold1/rulers-of-kazakh-khanate";
+  sourceLink.textContent = "Rulers of the Kazakh Khanate";
+  sourceLink.rel = "noopener";
+  sourceLine.append(sourceLink);
   if (footer) {
     const line = document.createElement("p");
     line.className = "footer-export";
     line.append(tools);
-    footer.append(line);
+    footer.append(line, sourceLine);
   } else {
-    poster.append(tools);
+    poster.append(tools, sourceLine);
   }
   poster.dataset.exportAttached = "1";
 }

@@ -30,6 +30,8 @@ export function buildYearGrid(rulers, extent = yearExtent(rulers)) {
 
   for (const ruler of rulers) {
     for (let year = ruler.start; year <= ruler.end; year += 1) {
+      // No year 0 in the historical BC/AD calendar (1 BC is followed by AD 1).
+      if (year === 0) continue;
       const row = Math.floor(year / 100) - firstRow;
       const col = ((year % 100) + 100) % 100;
       if (row < 0 || row >= nRows) continue;

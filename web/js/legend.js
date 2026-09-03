@@ -1,18 +1,22 @@
 /** Clickable legend grouped by the century the reign started. */
 
-import { ordinalSuffix } from "./parse.js";
+import { centuryHeading, formatYearRange } from "./parse.js";
 
 function appendLegendLabel(button, ruler) {
   const label = document.createElement("span");
   label.className = "legend-label";
+  label.setAttribute("dir", "auto");
   if (ruler.mark) {
     const mark = document.createElement("span");
     mark.className = "legend-mark";
     mark.setAttribute("aria-hidden", "true");
     mark.textContent = ruler.mark;
-    label.append(mark, document.createTextNode(` ${ruler.name} ${ruler.start}-${ruler.end}`));
+    label.append(
+      mark,
+      document.createTextNode(` ${ruler.name} ${formatYearRange(ruler.start, ruler.end)}`),
+    );
   } else {
-    label.textContent = `${ruler.name} ${ruler.start}-${ruler.end}`;
+    label.textContent = `${ruler.name} ${formatYearRange(ruler.start, ruler.end)}`;
   }
   button.append(label);
 }
@@ -34,7 +38,7 @@ export function renderLegend(container, rulers, colors, themeHeaderColor) {
     col.className = "legend-col";
     const heading = document.createElement("h3");
     heading.style.color = themeHeaderColor;
-    heading.textContent = `${century}${ordinalSuffix(century)} century`;
+    heading.textContent = centuryHeading(century);
     col.append(heading);
 
     const list = document.createElement("ul");

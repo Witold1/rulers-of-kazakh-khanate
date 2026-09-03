@@ -70,6 +70,10 @@
                       <select id="col-period" required></select>
                     </label>
                     <label>
+                      <span>Ruler native-name column</span>
+                      <select id="col-native"></select>
+                    </label>
+                    <label>
                       <span class="field-label">
                         Custom group column
                         <button
@@ -85,15 +89,35 @@
                           </svg>
                         </button>
                         <span class="stat-tip-bubble" role="tooltip" hidden>
-                          Optional column shown in year tooltips and the legend. For example: dynasty,
-                          tribe, faction, major instability, contested reign.
+                          Optional column shown in year tooltips. For example: dynasty,
+                          tribe, faction, juz, contested reign. Pair with Custom group
+                          symbol for the legend prefix (ᴹ, ᴿ, …).
                         </span>
                       </span>
                       <select id="col-group"></select>
                     </label>
                     <label>
-                      <span>Ruler native-name column</span>
-                      <select id="col-native"></select>
+                      <span class="field-label">
+                        Custom group symbol column
+                        <button
+                          type="button"
+                          class="stat-tip"
+                          aria-expanded="false"
+                          aria-label="Explain custom group symbol column"
+                        >
+                          <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false">
+                            <circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.5" />
+                            <circle cx="8" cy="5" r="1" fill="currentColor" />
+                            <path d="M8 7.25v4.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                          </svg>
+                        </button>
+                        <span class="stat-tip-bubble" role="tooltip" hidden>
+                          Optional short mark shown before the name in the legend
+                          (for example ᴹ or ᴿ). Use with Custom group for the full label
+                          (Middle Juz, dynasty, house).
+                        </span>
+                      </span>
+                      <select id="col-mark"></select>
                     </label>
                     <label>
                       <span>Tooltip note column</span>

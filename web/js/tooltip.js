@@ -1,3 +1,5 @@
+import { formatYear, formatYearRange } from "./parse.js";
+
 /** Pointer tooltip + a text readout for keyboard / screen readers. */
 
 export function bindTooltip(tooltipEl, readoutEl) {
@@ -29,32 +31,33 @@ export function bindTooltip(tooltipEl, readoutEl) {
 
 export function yearTooltipHtml(year, rulers) {
   if (!rulers.length) {
-    return `<strong>${year}</strong><div class="tip-muted">No recorded reign</div>`;
+    return `<strong>${formatYear(year)}</strong><div class="tip-muted">No recorded reign</div>`;
   }
   const rows = rulers
     .map((r) => {
+      const groupLine = [r.mark, r.group].filter(Boolean).join(" ");
       const extra = [
-        r.group ? `<span class="tip-native" dir="auto">${r.group}</span>` : "",
         r.nativeName
           ? `<span class="tip-native" dir="auto">${r.nativeName}</span>`
           : "",
+        groupLine ? `<span class="tip-native" dir="auto">${groupLine}</span>` : "",
         r.deathReason
           ? `<span class="tip-native" dir="auto">${r.deathReason}</span>`
           : "",
       ].join("");
       return (
         `<div class="tip-row"><span class="tip-swatch" style="background:${r.color}"></span>` +
-        `<span>${r.mark}${r.name} ${r.start}–${r.end}</span>` +
+        `<span dir="auto">${r.name} ${formatYearRange(r.start, r.end)}</span>` +
         extra +
         `</div>`
       );
     })
     .join("");
-  return `<strong>${year}</strong>${rows}`;
+  return `<strong>${formatYear(year)}</strong>${rows}`;
 }
 
 export function yearReadout(year, rulers) {
   if (year == null) return "";
-  if (!rulers.length) return `${year} — no recorded reign`;
-  return `${year} — ${rulers.map((r) => r.chartLabel).join(", ")}`;
+  if (!rulers.length) return `${formatYear(year)} — no recorded reign`;
+  return `${formatYear(year)} — ${rulers.map((r) => r.chartLabel).join(", ")}`;
 }

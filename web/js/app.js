@@ -11,7 +11,7 @@ import { renderLegend, setLegendSelection } from "./legend.js";
 import { bindTooltip, yearReadout, yearTooltipHtml } from "./tooltip.js";
 import { initExport } from "./export.js";
 
-const PRESET_MANIFEST_URL = "../data/presets.json";
+const PRESET_MANIFEST_URL = "../data/presets.meta.json";
 const DEFAULT_DATASET_ID = "khans";
 const DATASETS = {};
 const DEFAULT_AUTHOR_HTML = `Author: Witold @ <a href="https://witold1.github.io">Witold1.github.io</a>`;
@@ -37,6 +37,7 @@ const customAuthorInput = document.querySelector("#custom-author");
 const colNameSelect = document.querySelector("#col-name");
 const colPeriodSelect = document.querySelector("#col-period");
 const colGroupSelect = document.querySelector("#col-group");
+const colMarkSelect = document.querySelector("#col-mark");
 const colNativeSelect = document.querySelector("#col-native");
 const colDeathSelect = document.querySelector("#col-death");
 const applyCustomBtn = document.querySelector("#apply-custom");
@@ -321,6 +322,7 @@ function customParseOptions() {
       name: colNameSelect.value || undefined,
       period: colPeriodSelect.value || undefined,
       group: colGroupSelect.value || undefined,
+      mark: colMarkSelect.value || undefined,
       nativeName: colNativeSelect.value || undefined,
       deathReason: colDeathSelect.value || undefined,
     },
@@ -351,7 +353,7 @@ function showCustomDataset(tsvText, filename = "Local file") {
   paint();
 }
 
-function setSelectOptions(selectEl, columns, preferredRegex) {
+function setSelectOptions(selectEl, columns, preferredRegex, { required = false } = {}) {
   const current = selectEl.value;
   selectEl.innerHTML = "";
   const none = document.createElement("option");
@@ -364,21 +366,39 @@ function setSelectOptions(selectEl, columns, preferredRegex) {
     option.textContent = col;
     selectEl.append(option);
   }
-  const preferred = columns.find((name) => preferredRegex.test(name));
-  selectEl.value = current || preferred || "";
+  if (columns.includes(current)) {
+    selectEl.value = current;
+    return;
+  }
+  if (required) {
+    const preferred = columns.find((name) => preferredRegex.test(name));
+    selectEl.value = preferred || "";
+    return;
+  }
+  selectEl.value = "";
 }
 
 function populateColumnSelects(columns, mapping = {}) {
-  setSelectOptions(colNameSelect, columns, /name|имя/i);
-  setSelectOptions(colPeriodSelect, columns, /period|правлен|годы|years/i);
-  setSelectOptions(colGroupSelect, columns, /dynast|династ|^group$/i);
-  setSelectOptions(colNativeSelect, columns, /kazakh|native|arabic/i);
-  setSelectOptions(colDeathSelect, columns, /death|причин|note/i);
-  if (mapping.name) colNameSelect.value = mapping.name;
-  if (mapping.period) colPeriodSelect.value = mapping.period;
-  if (mapping.group) colGroupSelect.value = mapping.group;
-  if (mapping.nativeName) colNativeSelect.value = mapping.nativeName;
-  if (mapping.deathReason) colDeathSelect.value = mapping.deathReason;
+  setSelectOptions(colNameSelect, columns, /name|имя/i, { required: true });
+  setSelectOptions(colPeriodSelect, columns, /period|reign|правлен|годы|years/i, {
+    required: true,
+  });
+  setSelectOptions(colNativeSelect, columns);
+  setSelectOptions(colGroupSelect, columns);
+  setSelectOptions(colMarkSelect, columns);
+  setSelectOptions(colDeathSelect, columns);
+  if (mapping.name && columns.includes(mapping.name)) colNameSelect.value = mapping.name;
+  if (mapping.period && columns.includes(mapping.period)) {
+    colPeriodSelect.value = mapping.period;
+  }
+  if (mapping.nativeName && columns.includes(mapping.nativeName)) {
+    colNativeSelect.value = mapping.nativeName;
+  }
+  if (mapping.group && columns.includes(mapping.group)) colGroupSelect.value = mapping.group;
+  if (mapping.mark && columns.includes(mapping.mark)) colMarkSelect.value = mapping.mark;
+  if (mapping.deathReason && columns.includes(mapping.deathReason)) {
+    colDeathSelect.value = mapping.deathReason;
+  }
 }
 
 function syncCustomColumns(sourceText, filename, { detectFormat = false } = {}) {

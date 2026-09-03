@@ -1,73 +1,73 @@
-Name,Ruling Period,Dynasty
-Egbert,802–839,House of Wessex
-Aethelwulf,839–858,House of Wessex
-Aethelbald,858–860,House of Wessex
-Aethelberht,860–865,House of Wessex
-Aethelred I,865–871,House of Wessex
-Alfred the Great,871–899,House of Wessex
-Edward the Elder,899–924,House of Wessex
-Athelstan,924–939,House of Wessex
-Edmund I,939–946,House of Wessex
-Eadred,946–955,House of Wessex
-Eadwig,955–959,House of Wessex
-Edgar the Peaceful,959–975,House of Wessex
-Edward the Martyr,975–978,House of Wessex
-Aethelred the Unready,978–1013,House of Wessex
-Sweyn Forkbeard,1013–1014,House of Denmark
-Aethelred the Unready,1014–1016,House of Wessex
-Edmund Ironside,1016,House of Wessex
-Cnut the Great,1016–1035,House of Denmark
-Harold Harefoot,1035–1040,House of Denmark
-Harthacnut,1040–1042,House of Denmark
-Edward the Confessor,1042–1066,House of Wessex
-Harold Godwinson,1066,House of Wessex
-Edgar the Aetheling,1066,House of Wessex
-William I (the Conqueror),1066–1087,House of Normandy
-William II,1087–1100,House of Normandy
-Henry I,1100–1135,House of Normandy
-Stephen,1135–1154,House of Blois
-Matilda,1141,House of Normandy
-Henry II,1154–1189,House of Plantagenet
-Richard I (the Lionheart),1189–1199,House of Plantagenet
-John,1199–1216,House of Plantagenet
-Henry III,1216–1272,House of Plantagenet
-Edward I,1272–1307,House of Plantagenet
-Edward II,1307–1327,House of Plantagenet
-Edward III,1327–1377,House of Plantagenet
-Richard II,1377–1399,House of Plantagenet
-Henry IV,1399–1413,House of Lancaster
-Henry V,1413–1422,House of Lancaster
-Henry VI,1422–1461,House of Lancaster
-Edward IV,1461–1470,House of York
-Henry VI,1470–1471,House of Lancaster
-Edward IV,1471–1483,House of York
-Edward V,1483,House of York
-Richard III,1483–1485,House of York
-Henry VII,1485–1509,House of Tudor
-Henry VIII,1509–1547,House of Tudor
-Edward VI,1547–1553,House of Tudor
-Lady Jane Grey,1553,House of Tudor
-Mary I,1553–1558,House of Tudor
-Elizabeth I,1558–1603,House of Tudor
-James I,1603–1625,House of Stuart
-Charles I,1625–1649,House of Stuart
-Oliver Cromwell (Lord Protector),1653–1658,Commonwealth
-Richard Cromwell (Lord Protector),1658–1659,Commonwealth
-Charles II,1660–1685,House of Stuart
-James II,1685–1688,House of Stuart
-Mary II,1689–1694,House of Stuart
-William III,1689–1702,House of Stuart
-Anne,1702–1707,House of Stuart
-Anne,1707–1714,House of Stuart
-George I,1714–1727,House of Hanover
-George II,1727–1760,House of Hanover
-George III,1760–1820,House of Hanover
-George IV,1820–1830,House of Hanover
-William IV,1830–1837,House of Hanover
-Victoria,1837–1901,House of Hanover
-Edward VII,1901–1910,House of Saxe-Coburg and Gotha
-George V,1910–1936,House of Windsor
-Edward VIII,1936,House of Windsor
-George VI,1936–1952,House of Windsor
-Elizabeth II,1952–2022,House of Windsor
-Charles III,2022–Present,House of Windsor
+Name,Ruling Period,Dynasty,Group symbol
+Egbert,802–839,House of Wessex,ᵂ
+Aethelwulf,839–858,House of Wessex,ᵂ
+Aethelbald,858–860,House of Wessex,ᵂ
+Aethelberht,860–865,House of Wessex,ᵂ
+Aethelred I,865–871,House of Wessex,ᵂ
+Alfred the Great,871–899,House of Wessex,ᵂ
+Edward the Elder,899–924,House of Wessex,ᵂ
+Athelstan,924–939,House of Wessex,ᵂ
+Edmund I,939–946,House of Wessex,ᵂ
+Eadred,946–955,House of Wessex,ᵂ
+Eadwig,955–959,House of Wessex,ᵂ
+Edgar the Peaceful,959–975,House of Wessex,ᵂ
+Edward the Martyr,975–978,House of Wessex,ᵂ
+Aethelred the Unready,978–1013,House of Wessex,ᵂ
+Sweyn Forkbeard,1013–1014,House of Denmark,ᴰ
+Aethelred the Unready,1014–1016,House of Wessex,ᵂ
+Edmund Ironside,1016,House of Wessex,ᵂ
+Cnut the Great,1016–1035,House of Denmark,ᴰ
+Harold Harefoot,1035–1040,House of Denmark,ᴰ
+Harthacnut,1040–1042,House of Denmark,ᴰ
+Edward the Confessor,1042–1066,House of Wessex,ᵂ
+Harold Godwinson,1066,House of Wessex,ᵂ
+Edgar the Aetheling,1066,House of Wessex,ᵂ
+William I (the Conqueror),1066–1087,House of Normandy,ᴺ
+William II,1087–1100,House of Normandy,ᴺ
+Henry I,1100–1135,House of Normandy,ᴺ
+Stephen,1135–1154,House of Blois,ᴮ
+Matilda,1141,House of Normandy,ᴺ
+Henry II,1154–1189,House of Plantagenet,ᴾ
+Richard I (the Lionheart),1189–1199,House of Plantagenet,ᴾ
+John,1199–1216,House of Plantagenet,ᴾ
+Henry III,1216–1272,House of Plantagenet,ᴾ
+Edward I,1272–1307,House of Plantagenet,ᴾ
+Edward II,1307–1327,House of Plantagenet,ᴾ
+Edward III,1327–1377,House of Plantagenet,ᴾ
+Richard II,1377–1399,House of Plantagenet,ᴾ
+Henry IV,1399–1413,House of Lancaster,ᴸ
+Henry V,1413–1422,House of Lancaster,ᴸ
+Henry VI,1422–1461,House of Lancaster,ᴸ
+Edward IV,1461–1470,House of York,ʸ
+Henry VI,1470–1471,House of Lancaster,ᴸ
+Edward IV,1471–1483,House of York,ʸ
+Edward V,1483,House of York,ʸ
+Richard III,1483–1485,House of York,ʸ
+Henry VII,1485–1509,House of Tudor,ᵀ
+Henry VIII,1509–1547,House of Tudor,ᵀ
+Edward VI,1547–1553,House of Tudor,ᵀ
+Lady Jane Grey,1553,House of Tudor,ᵀ
+Mary I,1553–1558,House of Tudor,ᵀ
+Elizabeth I,1558–1603,House of Tudor,ᵀ
+James I,1603–1625,House of Stuart,ˢ
+Charles I,1625–1649,House of Stuart,ˢ
+Oliver Cromwell (Lord Protector),1653–1658,Commonwealth,ᶜ
+Richard Cromwell (Lord Protector),1658–1659,Commonwealth,ᶜ
+Charles II,1660–1685,House of Stuart,ˢ
+James II,1685–1688,House of Stuart,ˢ
+Mary II,1689–1694,House of Stuart,ˢ
+William III,1689–1702,House of Stuart,ˢ
+Anne,1702–1707,House of Stuart,ˢ
+Anne,1707–1714,House of Stuart,ˢ
+George I,1714–1727,House of Hanover,ᴴ
+George II,1727–1760,House of Hanover,ᴴ
+George III,1760–1820,House of Hanover,ᴴ
+George IV,1820–1830,House of Hanover,ᴴ
+William IV,1830–1837,House of Hanover,ᴴ
+Victoria,1837–1901,House of Hanover,ᴴ
+Edward VII,1901–1910,House of Saxe-Coburg and Gotha,ᵍ
+George V,1910–1936,House of Windsor,ʷ
+Edward VIII,1936,House of Windsor,ʷ
+George VI,1936–1952,House of Windsor,ʷ
+Elizabeth II,1952–2022,House of Windsor,ʷ
+Charles III,2022–Present,House of Windsor,ʷ

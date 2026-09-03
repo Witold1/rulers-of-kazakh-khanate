@@ -3,7 +3,7 @@ Creative Commons Attribution-ShareAlike 4.0 International
 Copyright (c) 2026, Rulers of the Kazakh Khanate contributors
 
 The dataset and editorial content in the `data/` directory (including reign
-tables, `presets.json`, and related notes) are licensed under the Creative
+tables, `presets.meta.json`, and related notes) are licensed under the Creative
 Commons Attribution-ShareAlike 4.0 International License (CC BY-SA 4.0).
 
 Material compiled from Wikipedia and other public sources remains subject to

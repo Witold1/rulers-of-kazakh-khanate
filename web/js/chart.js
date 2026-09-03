@@ -1,6 +1,6 @@
 /** SVG century × year tiles (port of `draw_year_tiles` + `style_century_axes`). */
 
-import { EMPTY } from "./parse.js";
+import { EMPTY, rowCenturyLabel } from "./parse.js";
 import { absoluteYear } from "./grid.js";
 import { THEMES } from "./colors.js";
 
@@ -151,7 +151,7 @@ export function renderChart(svg, occupancy, colors, theme, opts = {}) {
       "dominant-baseline": "middle",
       transform: `rotate(-90 ${Y_LABEL_X} ${labelY})`,
     });
-    text.textContent = `${century * 100}s`;
+    text.textContent = rowCenturyLabel(century);
     labels.append(text);
   }
   root.append(labels);
